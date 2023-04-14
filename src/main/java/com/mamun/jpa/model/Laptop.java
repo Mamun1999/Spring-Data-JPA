@@ -6,10 +6,20 @@ import jakarta.persistence.*;
 public class Laptop {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int lId;
     private String laptopName;
 
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
     public Laptop() {
