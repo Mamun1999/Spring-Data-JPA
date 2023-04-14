@@ -2,6 +2,9 @@ package com.mamun.jpa.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class User {
 
@@ -11,6 +14,28 @@ public class User {
 
     @OneToOne(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Laptop laptop;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Post> postList;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Category> categories =new ArrayList<>();
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
 
     public Laptop getLaptop() {
         return laptop;
