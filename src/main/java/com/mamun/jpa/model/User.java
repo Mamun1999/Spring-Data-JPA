@@ -18,7 +18,7 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Post> postList;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "users")
     private List<Category> categories =new ArrayList<>();
 
     public List<Category> getCategories() {

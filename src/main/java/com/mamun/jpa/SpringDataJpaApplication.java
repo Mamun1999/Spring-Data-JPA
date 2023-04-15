@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -15,7 +17,6 @@ public class SpringDataJpaApplication {
 
 
 		ApplicationContext context = SpringApplication.run(SpringDataJpaApplication.class, args);
-
 	    UserRepository userRepository=context.getBean(UserRepository.class);
 	    CategoryRepository categoryRepository=context.getBean(CategoryRepository.class);
 		PostRepository postRepository=context.getBean(PostRepository.class);
@@ -24,8 +25,20 @@ public class SpringDataJpaApplication {
 	    User2Repo user2Repo = context.getBean(User2Repo.class);
 
 
+	    Category category=	categoryRepository.getCategoryInfo(301);
+//		List<User> users=	category.getUsers();
+		System.out.println(category.getCategoryTitle());
+		List<User> users=category.getUsers();
+				for(User user:users){
+					System.out.println(user);
+				}
+
+//		System.out.println(Arrays.toString(users.toArray()));
 
 
+//        List<String> posts= postRepository.getDetails();
+//
+//		System.out.println(Arrays.toString(posts.toArray()));
 
 
 
